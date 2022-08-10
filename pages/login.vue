@@ -61,7 +61,6 @@ export default {
 
             this.$store.dispatch('authModule/login', this.form)
                 .then((response) => {
-                    console.log(this.$auth, this.$auth.loggedIn)
                     this.$nextTick(() => {
                         this.redirect('/forms');
                     })
