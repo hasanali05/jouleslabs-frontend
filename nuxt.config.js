@@ -58,12 +58,6 @@ export default {
         // url: "https://blooming-beach-30533.herokuapp.com",
         url: process.env.BASE_URL,
         autoFetchUser: false,
-        token: {
-          property: 'access_token',
-          maxAge: 60 * 60 * 12,
-          global: true,
-          type: 'Bearer'
-        },
         user: {
             property: 'user',
             autoFetch: false

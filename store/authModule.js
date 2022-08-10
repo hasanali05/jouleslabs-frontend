@@ -58,11 +58,9 @@ export const actions = {
   },
   setNewUser({commit}, user) {
     commit('setUser', user);
-    console.log(user);
     this.$auth.setUser(user);
     this.$auth.setUserToken(user.token);
     this.$auth.$storage.setUniversal('user', JSON.stringify(user))
-    console.log(this.$auth.$storage.getUniversal('user') || null);
     this.$axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
   },
   resetUser({commit}) {
