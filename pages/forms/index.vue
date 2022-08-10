@@ -103,8 +103,16 @@ export default {
             }
             return false;
         },
-        download(link) {
-            window.location.href = link;
+        download(url) {
+            this.$axios.$get(url, { responseType: 'blob' })
+            .then(response => {
+                const blob = new Blob([response.data], { type: 'application/pdf' })
+                const link = document.createElement('a')
+                link.href = URL.createObjectURL(blob)
+                link.download = label
+                link.click()
+                URL.revokeObjectURL(link.href)
+            }).catch(console.error)
         }
     }
 }
