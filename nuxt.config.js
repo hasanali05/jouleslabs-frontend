@@ -57,8 +57,10 @@ export default {
         // url: process.env.BASE_URL,
         autoFetchUser: false,
         token: {
-            property: 'token',
-            type: 'Bearer'
+          property: 'access_token',
+          maxAge: 60 * 60 * 12,
+          global: true,
+          type: 'Bearer'
         },
         user: {
             property: 'user',
