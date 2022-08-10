@@ -29,10 +29,8 @@ export const actions = {
         data: payload
       }).then((response) => {
         let user = response.data;
-        setTimeout(() => {
-          dispatch('setNewUser', user);
-          localStorage.setItem('loginTime', 0);
-        }, 1000);
+        dispatch('setNewUser', user);
+        localStorage.setItem('loginTime', 0);
         resolve(user);
       }).catch((error) => {
         reject(error.response.data)
@@ -61,9 +59,11 @@ export const actions = {
   setNewUser({commit}, user) {
     commit('setUser', user);
     this.$auth.setUser(user);
+    this.$auth.setLoggedIn(true);
     this.$auth.setUserToken(user.token);
     this.$auth.$storage.setUniversal('user', JSON.stringify(user))
     this.$axios.defaults.headers.common['Authorization'] = `Bearer ${user.token}`;
+    console.log(this.$auth, this.$auth.loggedIn)
   },
   resetUser({commit}) {
     commit('setUser', null);
