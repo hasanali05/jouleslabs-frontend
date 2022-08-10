@@ -21,7 +21,7 @@ export const actions = {
       dispatch('resetUser');
     }
   },
-  login({dispatch}, payload) {
+  async login({dispatch}, payload) {
     return new Promise(async (resolve, reject) => {
       dispatch('resetUser');
 
@@ -29,8 +29,10 @@ export const actions = {
         data: payload
       }).then((response) => {
         let user = response.data;
-        dispatch('setNewUser', user);
-        localStorage.setItem('loginTime', 0);
+        await setTimeout(() => {
+          dispatch('setNewUser', user);
+          localStorage.setItem('loginTime', 0);
+        }, 1000);
         resolve(user);
       }).catch((error) => {
         reject(error.response.data)
