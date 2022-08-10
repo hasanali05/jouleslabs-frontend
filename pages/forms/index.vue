@@ -53,6 +53,8 @@ export default {
       }
     },
     async fetch() {
+        
+    console.log(this.$auth, this.$auth.loggedIn)
       this.forms = await this.$axios.$get('api/forms')
     },
     methods: {
