@@ -16,7 +16,8 @@
         <tbody>
             <tr v-for="(form, index) in forms" :key="'form_' + index">
                 <td>
-                    <a :href="form.file_link" target="_blank">{{form.title}}</a>
+                    <!-- <a :href="form.file_link" target="_blank">{{form.title}}</a> -->
+                    <a @click.prevent="download(form.file_link)">{{form.title}}</a>
                 </td>
                 <td>
                     <template>
@@ -101,6 +102,9 @@ export default {
                 return true
             }
             return false;
+        },
+        download(link) {
+            window.location.href = link;
         }
     }
 }
